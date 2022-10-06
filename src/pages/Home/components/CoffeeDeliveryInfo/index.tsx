@@ -8,7 +8,6 @@ interface CoffeeDeliveryInfoProps {
 }
 
 export function CoffeeDeliveryInfo({ text, icon, backgroundColor }: CoffeeDeliveryInfoProps) {
-  console.log(backgroundColor)
   return (
     <CoffeeDeliveryInfoContainer>
       <Circle backgroundColor={backgroundColor}>

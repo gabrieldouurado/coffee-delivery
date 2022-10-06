@@ -1,9 +1,10 @@
 import { ShoppingCartSimple } from 'phosphor-react'
 
-import { AddToCartButton, BuyOptions, CoffeeItemContainer, CoffeeNameAndDescripion, QuantitySelect, TagsList } from "./styles";
+import { AddToCartButton, BuyOptions, CoffeeItemContainer, CoffeeNameAndDescripion, TagsList } from "./styles";
 
 import Espresso from '../../../../assets/coffeeTypes/Expresso.png'
 import { CoffeeTypeTag } from "./components/CoffeeTypeTag";
+import { QuantitySelector } from '../../../../components/QuantitySelector';
 
 export function CoffeeItem() {
   return (
@@ -24,7 +25,7 @@ export function CoffeeItem() {
           R$ <span>9,90</span>
         </div>
         <section>
-          <QuantitySelect />
+          <QuantitySelector />
           <AddToCartButton>
             <ShoppingCartSimple size={22} />
           </AddToCartButton>

@@ -16,6 +16,7 @@ export const Intro = styled.div`
   display: flex;
   justify-content: space-between;
 
+  flex-wrap: wrap;
   padding: 5.75rem 0;
 `
 
@@ -51,4 +52,6 @@ export const InformationGrid = styled.div`
 export const CoffeeList = styled.div`
   display: flex;
   gap: 2rem;
+
+  flex-wrap: wrap;
 `

@@ -6,6 +6,7 @@ export const CoffeeItemContainer = styled.div`
   align-items: center;
 
   width: 16rem;
+  min-width: 16rem;
   height: 19.375rem;
 
   border-radius: 6px 36px;
@@ -86,15 +87,4 @@ export const AddToCartButton = styled.button`
   border-radius: 6px;
   color: ${props => props.theme.white};
   background-color: ${props => props.theme["purple-dark"]};
-`
-
-export const QuantitySelect = styled.div`
-  display: flex;
-
-  width: 4.5rem;
-  height: 2.375rem;
-  
-  border-radius: 6px;
-  color: ${props => props.theme.white};
-  background-color: ${props => props.theme["base-button"]};
 `
