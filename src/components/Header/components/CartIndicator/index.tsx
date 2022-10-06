@@ -4,7 +4,7 @@ import { CartIndicatorContainer } from "./styles";
 export function CartIndicator() {
   return (
     <CartIndicatorContainer>
-      <ShoppingCart size={18}/>
+      <ShoppingCart size={22}/>
     </CartIndicatorContainer>
   )
 }

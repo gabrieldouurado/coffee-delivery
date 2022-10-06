@@ -1,14 +1,22 @@
 import styled from "styled-components";
 
-export const HomeContainer = styled.div``
+export const HomeContainer = styled.div`
+  header {
+    padding: 2rem  0 3.75rem 0;
+
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 2rem;
+
+    color: ${props => props.theme["base-subtitle"]};
+  }
+`
 
 export const Intro = styled.div`
   display: flex;
   justify-content: space-between;
 
   padding: 5.75rem 0;
-
-  border: 1px solid;
 `
 
 export const InformationContainer = styled.div`
@@ -39,4 +47,8 @@ export const InformationGrid = styled.div`
   display: grid;
   grid-template-columns: auto auto;
   row-gap: 12px;
+`
+export const CoffeeList = styled.div`
+  display: flex;
+  gap: 2rem;
 `

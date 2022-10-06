@@ -1,8 +1,9 @@
-import { ShoppingCartSimple, Package, Timer } from 'phosphor-react'
+import { ShoppingCartSimple, Package, Timer, Coffee } from 'phosphor-react'
 import { CoffeeDeliveryInfo } from "./components/CoffeeDeliveryInfo";
-import { InformationGrid, HomeContainer, InformationContainer, Intro, SubTitle, Title } from "./styles";
+import { InformationGrid, HomeContainer, InformationContainer, Intro, SubTitle, Title, CoffeeList } from "./styles";
 
 import CoffeeImage from "../../assets/coffee-image.svg"
+import { CoffeeItem } from './components/CoffeeItem';
 
 export function Home() {
   return (
@@ -35,13 +36,22 @@ export function Home() {
             />
             <CoffeeDeliveryInfo
               text="O café chega fresquinho até você"
-              icon={<Package />}
+              icon={<Coffee />}
               backgroundColor="purple"
             />
           </InformationGrid>
         </InformationContainer>
+
         <img src={CoffeeImage} alt="Imagem de uma embalagem descartável de café" />
+
       </Intro>
+      <header>Nossos cafés</header>
+      <CoffeeList>
+        <CoffeeItem />
+        <CoffeeItem />
+        <CoffeeItem />
+        <CoffeeItem />
+      </CoffeeList>
     </HomeContainer>
   )
 }
