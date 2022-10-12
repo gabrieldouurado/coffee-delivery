@@ -34,7 +34,7 @@ export function Success() {
             <CircleIcon icon={<CurrencyDollar />} backgroundColor="yellowDark" />
             <text>
               <span>Pagamento na entrega</span>
-              <strong>Cortão de Crédito</strong>
+              <strong>Cartão de Crédito</strong>
             </text>
           </div>
         </OrderInfos>

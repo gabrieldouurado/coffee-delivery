@@ -2,27 +2,41 @@ import { ShoppingCartSimple } from 'phosphor-react'
 
 import { AddToCartButton, BuyOptions, CoffeeItemContainer, CoffeeNameAndDescripion, TagsList } from "./styles";
 
-import Espresso from '../../../../assets/coffeeTypes/Expresso.png'
 import { CoffeeTypeTag } from "./components/CoffeeTypeTag";
 import { QuantitySelector } from '../../../../components/QuantitySelector';
+import { CoffeeType, CoffeeTypeImage } from '../../../../assets/CoffeeTypeImage';
 
-export function CoffeeItem() {
+interface CoffeeItemProps {
+  type: CoffeeType
+  name: string
+  description: string
+  tags: string[]
+  price: number
+}
+
+export function CoffeeItem({ type, name, description, tags, price }: CoffeeItemProps) {
+  const ImageCoffee = CoffeeTypeImage(type)
+
   return (
     <CoffeeItemContainer>
-      <img src={Espresso} alt="Xícara de café" />
+      <img src={ImageCoffee} alt="Xícara de café" />
 
       <TagsList>
-        <CoffeeTypeTag coffeeType="Tradicional" />
+        {tags.map(tag => {
+          return <CoffeeTypeTag
+            key={tag}
+            coffeeType={tag} />
+        })}
       </TagsList>
 
       <CoffeeNameAndDescripion>
-        <span>Expresso Tradicional</span>
-        O tradicional café feito com água quente e grãos moídos
+        <span>{name}</span>
+        {description}
       </CoffeeNameAndDescripion>
 
       <BuyOptions>
         <div>
-          R$ <span>9,90</span>
+          R$ <span>{price}</span>
         </div>
         <section>
           <QuantitySelector />
