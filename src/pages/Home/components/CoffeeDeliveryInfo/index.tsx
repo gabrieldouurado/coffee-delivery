@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
-import { Circle, CoffeeDeliveryInfoContainer } from "./styles";
+import { CircleIcon } from "../../../../components/CircleIcon";
+import { CoffeeDeliveryInfoContainer } from "./styles";
+
 
 interface CoffeeDeliveryInfoProps {
   text: string;
@@ -10,9 +12,7 @@ interface CoffeeDeliveryInfoProps {
 export function CoffeeDeliveryInfo({ text, icon, backgroundColor }: CoffeeDeliveryInfoProps) {
   return (
     <CoffeeDeliveryInfoContainer>
-      <Circle backgroundColor={backgroundColor}>
-        {icon}
-      </Circle>
+      <CircleIcon backgroundColor={backgroundColor} icon={icon}/>
       {text}
     </CoffeeDeliveryInfoContainer>
   )
