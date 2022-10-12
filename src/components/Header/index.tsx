@@ -8,14 +8,16 @@ import { NavLink } from 'react-router-dom';
 export function Header() {
   return (
     <HeaderContainer>
-      <img src={CoffeeDeliveryLogo} alt="" />
+      <NavLink to="/" title="Home">
+        <img src={CoffeeDeliveryLogo} alt="" />
+      </NavLink>
       <nav>
         <UserCityAndCountryIndicator>
-          <MapPin size={19}/>
+          <MapPin size={19} />
           Brasília, DF
         </UserCityAndCountryIndicator>
         <NavLink to="/checkout" title="Carrinho">
-        <CartIndicator />
+          <CartIndicator />
         </NavLink>
       </nav>
     </HeaderContainer>

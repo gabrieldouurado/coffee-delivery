@@ -65,7 +65,7 @@ export function CoffeeItem({ type, name, description, tags, price }: CoffeeItemP
 
       <BuyOptions>
         <div>
-          R$ <span>{price}</span>
+          R$ <span>{price.toFixed(2).replace('.', ',')}</span>
         </div>
         <section>
           <QuantitySelector

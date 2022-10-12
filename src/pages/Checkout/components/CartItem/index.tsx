@@ -25,7 +25,7 @@ export function CartItem({ type, name, quantity, price }: CartItemsType) {
     removeItemOfCart(name)
   }
 
-  const totalPriceItem = (price * quantity).toFixed(2)
+  const totalPriceItem = (price * quantity).toFixed(2).replace('.', ',')
 
   return (
     <CartItemsContainer>

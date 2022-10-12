@@ -54,6 +54,7 @@ export const RemoveItemButton = styled.button`
   background-color: ${props => props.theme["base-button"]};
 
   &:hover {
+    cursor: pointer;
     background-color: ${props => props.theme["base-hover"]};
   }
 

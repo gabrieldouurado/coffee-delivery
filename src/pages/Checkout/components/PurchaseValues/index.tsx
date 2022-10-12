@@ -10,9 +10,9 @@ export function PurchaseValues({ totalPriceOfItems = 0.00, deliveryPrice = 0.00 
 
   return (
     <PurchaseValuesContainer>
-      <div><span>Total de itens</span> <span>R$ {totalPriceOfItems.toFixed(2)}</span></div>
-      <div><span>Entrega</span> <span>R$ {deliveryPrice.toFixed(2)}</span></div>
-      <div><strong>Total</strong> <strong>R$ {totalPurchasePrice.toFixed(2)}</strong></div>
+      <div><span>Total de itens</span> <span>R$ {totalPriceOfItems.toFixed(2).replace('.', ',')}</span></div>
+      <div><span>Entrega</span> <span>R$ {deliveryPrice.toFixed(2).replace('.', ',')}</span></div>
+      <div><strong>Total</strong> <strong>R$ {totalPurchasePrice.toFixed(2).replace('.', ',')}</strong></div>
     </PurchaseValuesContainer>
   )
 }
