@@ -1,13 +1,13 @@
 import { Trash } from "phosphor-react"
 
-import { CartItensContainer, RemoveItemButton, ButtonsDiv } from "./styles";
+import { CartItemsContainer, RemoveItemButton, ButtonsDiv } from "./styles";
 
 import Espresso from '../../../../assets/CoffeeTypeImage/Expresso.png'
 import { QuantitySelector } from "../../../../components/QuantitySelector";
 
-export function CartItens() {
+export function CartItems() {
   return (
-    <CartItensContainer>
+    <CartItemsContainer>
       <img src={Espresso} alt="" />
       <div className="CoffeeInfo">
         Expresso Tradicional
@@ -22,6 +22,6 @@ export function CartItens() {
       <div>
         <span>R$ 9,90</span>
       </div>
-    </CartItensContainer>
+    </CartItemsContainer>
   )
 }

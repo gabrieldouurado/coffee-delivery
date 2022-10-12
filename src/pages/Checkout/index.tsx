@@ -1,5 +1,5 @@
 import { MapPinLine, CurrencyDollar } from 'phosphor-react'
-import { CartItens } from './components/CartItens';
+import { CartItems } from './components/CartItems';
 import { PaymentMethodSelector } from './components/PaymentMethodSelector';
 import { PurchaseValues } from './components/PurchaseValues';
 import { AddressAndPayment, AddressForm, StreetInput, ZipCodeInput, CheckoutContainer, Payment, Title, HouseNumberInput, ComplementInput, DistrictInput, CityInput, StateInput, Cart, PurchaseButton } from "./styles";
@@ -47,8 +47,8 @@ export function Checkout() {
       <div>
         <Title>Cafés selecionados</Title>
         <Cart>
-          <CartItens />
-          <CartItens />
+          <CartItems />
+          <CartItems />
           <PurchaseValues />
           <PurchaseButton>
             CONFIRMAR PEDIDO

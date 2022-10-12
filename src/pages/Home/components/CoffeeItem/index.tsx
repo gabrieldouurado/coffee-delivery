@@ -5,7 +5,8 @@ import { AddToCartButton, BuyOptions, CoffeeItemContainer, CoffeeNameAndDescripi
 import { CoffeeTypeTag } from "./components/CoffeeTypeTag";
 import { QuantitySelector } from '../../../../components/QuantitySelector';
 import { CoffeeType, CoffeeTypeImage } from '../../../../assets/CoffeeTypeImage';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '../../../../contexts/CartContext';
 
 interface CoffeeItemProps {
   type: CoffeeType
@@ -17,6 +18,8 @@ interface CoffeeItemProps {
 
 export function CoffeeItem({ type, name, description, tags, price }: CoffeeItemProps) {
   const [Quantity, setQuantity] = useState(1)
+
+  const {newCartItem} = useContext(CartContext)
   
   const ImageCoffee = CoffeeTypeImage(type)
 
@@ -33,7 +36,14 @@ export function CoffeeItem({ type, name, description, tags, price }: CoffeeItemP
   }
 
   function handleInsertNewItem() {
-    console.log(`Novo Item\nItem: ${name}\nQuantidade: ${Quantity}`)
+    const newItem = {
+      type,
+      name,
+      price,
+      quantity: Quantity
+    }
+
+    newCartItem(newItem)
   }
 
   return (

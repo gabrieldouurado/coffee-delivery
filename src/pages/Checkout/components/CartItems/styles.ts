@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartItensContainer = styled.div`
+export const CartItemsContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
