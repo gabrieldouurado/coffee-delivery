@@ -5,6 +5,7 @@ import { AddToCartButton, BuyOptions, CoffeeItemContainer, CoffeeNameAndDescripi
 import { CoffeeTypeTag } from "./components/CoffeeTypeTag";
 import { QuantitySelector } from '../../../../components/QuantitySelector';
 import { CoffeeType, CoffeeTypeImage } from '../../../../assets/CoffeeTypeImage';
+import { useState } from 'react';
 
 interface CoffeeItemProps {
   type: CoffeeType
@@ -15,7 +16,25 @@ interface CoffeeItemProps {
 }
 
 export function CoffeeItem({ type, name, description, tags, price }: CoffeeItemProps) {
+  const [Quantity, setQuantity] = useState(1)
+  
   const ImageCoffee = CoffeeTypeImage(type)
+
+  function handleDecreaseQuantity() {
+    if (Quantity > 1) {
+      setQuantity(Quantity - 1)
+    }
+  }
+
+  function handleIncreaseQuantity() {
+    if (Quantity < 99) {
+      setQuantity(Quantity + 1)
+    }
+  }
+
+  function handleInsertNewItem() {
+    console.log(`Novo Item\nItem: ${name}\nQuantidade: ${Quantity}`)
+  }
 
   return (
     <CoffeeItemContainer>
@@ -39,8 +58,12 @@ export function CoffeeItem({ type, name, description, tags, price }: CoffeeItemP
           R$ <span>{price}</span>
         </div>
         <section>
-          <QuantitySelector />
-          <AddToCartButton>
+          <QuantitySelector
+            quantity={Quantity}
+            onClickDecrease={handleDecreaseQuantity}
+            onClickIncrease={handleIncreaseQuantity}
+          />
+          <AddToCartButton onClick={handleInsertNewItem}>
             <ShoppingCartSimple size={22} />
           </AddToCartButton>
         </section>

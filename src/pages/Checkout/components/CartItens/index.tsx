@@ -2,7 +2,7 @@ import { Trash } from "phosphor-react"
 
 import { CartItensContainer, RemoveItemButton, ButtonsDiv } from "./styles";
 
-import Espresso from '../../../../assets/coffeeTypes/Expresso.png'
+import Espresso from '../../../../assets/CoffeeTypeImage/Expresso.png'
 import { QuantitySelector } from "../../../../components/QuantitySelector";
 
 export function CartItens() {

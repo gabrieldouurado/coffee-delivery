@@ -1,15 +1,21 @@
-import { Plus, Minus} from 'phosphor-react'
+import { Plus, Minus } from 'phosphor-react'
 
 import { AddOrRemoveQuantity, QuantitySelectorContainer } from "./styles";
 
-export function QuantitySelector() {
+interface QuantitySelectorProps {
+  quantity: number
+  onClickIncrease: () => void
+  onClickDecrease: () => void
+}
+
+export function QuantitySelector({ quantity, onClickIncrease, onClickDecrease }: QuantitySelectorProps) {
   return (
     <QuantitySelectorContainer>
-      <AddOrRemoveQuantity>
+      <AddOrRemoveQuantity onClick={onClickDecrease}>
         <Minus />
       </AddOrRemoveQuantity>
-      <span id='quantity'>1</span>
-      <AddOrRemoveQuantity>
+      <span id='quantity'>{quantity}</span>
+      <AddOrRemoveQuantity onClick={onClickIncrease}>
         <Plus />
       </AddOrRemoveQuantity>
     </QuantitySelectorContainer>
