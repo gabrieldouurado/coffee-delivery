@@ -37,4 +37,8 @@ export const AddOrRemoveQuantity = styled.button`
   border: 0;
   color: ${props => props.theme.purple};
   background-color: transparent;
+
+  svg:hover {
+    color: ${props => props.theme["purple-dark"]}
+  }
 `

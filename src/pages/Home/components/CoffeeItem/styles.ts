@@ -87,4 +87,8 @@ export const AddToCartButton = styled.button`
   border-radius: 6px;
   color: ${props => props.theme.white};
   background-color: ${props => props.theme["purple-dark"]};
+
+  &:hover {
+    background-color: ${props => props.theme.purple};
+  }
 `
