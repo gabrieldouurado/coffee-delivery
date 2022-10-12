@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState } from "react";
 import { CoffeeType } from "../assets/CoffeeTypeImage";
 
-interface CartItemsType {
+export interface CartItemsType {
   type: CoffeeType
   name: string
   price: number
@@ -11,6 +11,8 @@ interface CartItemsType {
 interface CartContextType {
   CartItems: CartItemsType[]
   newCartItem: (newItem: CartItemsType) => void
+  changeItemQuantity: (item: string, newQuantity: number) => void
+  removeItemOfCart: (itemForRemove: string) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -29,8 +31,14 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       })
 
       if (positionIndex >= 0) {
-        CartItems[positionIndex].quantity += newItem.quantity
-        setCartItems([...CartItems])
+        let quantityCount = CartItems[positionIndex].quantity + newItem.quantity
+        if (quantityCount < 99) {
+          CartItems[positionIndex].quantity += newItem.quantity
+          setCartItems([...CartItems])
+        } else {
+          CartItems[positionIndex].quantity = 99
+          setCartItems([...CartItems])
+        }
       } else {
         setCartItems([...CartItems, newItem])
       }
@@ -39,11 +47,32 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function changeItemQuantity(coffeName: string, newQuantity: number) {
+    if (newQuantity > 0 && newQuantity <= 99) {
+      const positionIndex = CartItems.findIndex(item => {
+        return item.name === coffeName
+      })
+
+      CartItems[positionIndex].quantity = newQuantity
+      setCartItems([...CartItems])
+    }
+  }
+
+  function removeItemOfCart(itemForRemove: string) {
+    const CartItemsWithoutRemovedItem = CartItems.filter(item => {
+      return item.name !== itemForRemove
+    })
+
+    setCartItems(CartItemsWithoutRemovedItem)
+  }
+
   return (
     <CartContext.Provider
       value={{
         CartItems,
-        newCartItem
+        newCartItem,
+        changeItemQuantity,
+        removeItemOfCart
       }}>
       {children}
     </CartContext.Provider>

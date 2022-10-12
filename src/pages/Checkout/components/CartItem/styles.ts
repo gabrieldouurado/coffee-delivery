@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const CartItemsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-
+  
   padding-bottom: 2rem;
   border-bottom: 1px solid ${props => props.theme["base-button"]};
   color: ${props => props.theme["base-subtitle"]};
@@ -12,12 +11,17 @@ export const CartItemsContainer = styled.div`
     padding-top: 2rem;
   }
 
+  div.CompleteCoffeeInfos {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+  }
+
   div.CoffeeInfo {
     display: flex;
     flex-direction: column;
+    padding-left: 1.25rem;
     gap: 8px;
-
-    padding-right: 3.125rem;
   }
 
   div > span {

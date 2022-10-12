@@ -151,6 +151,18 @@ export const Cart = styled.div`
   min-width: 28rem;
   border-radius: 6px 44px;
   background-color: ${props => props.theme["base-card"]};
+
+  div.emptyCart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 1.125rem;
+
+    color: ${props => props.theme["base-subtitle"]};
+  }
 `
 
 export const PurchaseButton = styled.button`
