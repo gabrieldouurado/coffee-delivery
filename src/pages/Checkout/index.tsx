@@ -6,10 +6,12 @@ import { PaymentMethodSelector } from './components/PaymentMethodSelector';
 import { PurchaseValues } from './components/PurchaseValues';
 import { AddressAndPayment, AddressForm, CheckoutContainer, Payment, Title, Cart, PurchaseButton } from "./styles";
 
-import { FormProvider, useForm, useFormContext } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod';
 import { NewCheckoutPurchase } from './components/NewCheckoutPurchase';
+import { CheckoutContext } from '../../contexts/CheckoutContext';
+import { useNavigate } from 'react-router-dom';
 
 const newCheckoutPurchaseFormSchema = zod.object({
   zipCode: zod.string(),
@@ -21,10 +23,13 @@ const newCheckoutPurchaseFormSchema = zod.object({
   state: zod.string()
 })
 
-type newCheckoutPurchaseFormData = zod.infer<typeof newCheckoutPurchaseFormSchema>
+export type newCheckoutPurchaseFormData = zod.infer<typeof newCheckoutPurchaseFormSchema>
 
 export function Checkout() {
   const { CartItems } = useContext(CartContext)
+  const { setAddressInfos } = useContext(CheckoutContext)
+
+  const navigate = useNavigate()
 
   const newCheckoutPurchaseForm = useForm<newCheckoutPurchaseFormData>({
     resolver: zodResolver(newCheckoutPurchaseFormSchema),
@@ -47,7 +52,9 @@ export function Checkout() {
   }, 0)
 
   function handleCreateNewPurchase(data: newCheckoutPurchaseFormData) {
-    console.log(data)
+    setAddressInfos(data)
+    reset()
+    navigate('/success')
   }
 
   return (
@@ -65,7 +72,6 @@ export function Checkout() {
                 </div>
               </div>
               <NewCheckoutPurchase />
-              <input type="submit" />
             </FormProvider>
           </AddressForm>
           <Payment>

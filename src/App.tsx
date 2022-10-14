@@ -4,6 +4,7 @@ import { defaultTheme } from "./styles/themes/default"
 import { Router } from "./Router"
 import { BrowserRouter } from "react-router-dom"
 import { CartContextProvider } from "./contexts/CartContext"
+import { CheckoutContextProvider } from "./contexts/CheckoutContext"
 
 export function App() {
 
@@ -11,7 +12,9 @@ export function App() {
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <CartContextProvider>
-          <Router />
+          <CheckoutContextProvider>
+            <Router />
+          </CheckoutContextProvider>
         </CartContextProvider>
       </BrowserRouter>
       <GlobalStyle />

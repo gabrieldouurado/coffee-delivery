@@ -1,11 +1,14 @@
 import { CreditCard, Bank, Money } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CheckoutContext } from '../../../../contexts/CheckoutContext'
 import { PaymentMethodSelectorContainer, PaymentTypeButton } from "./styles"
 
-export function PaymentMethodSelector() {
-  const [paymentMethod, setPaymentMethod] = useState("CreditCart")
+export type PaymentMethodTypes = "CreditCart" | "DebitCart" | "Money"
 
-  function handleSelectPaymentMethod(method: "CreditCart" | "DebitCart" | "Money") {
+export function PaymentMethodSelector() {
+  const { paymentMethod, setPaymentMethod } = useContext(CheckoutContext)
+
+  function handleSelectPaymentMethod(method: PaymentMethodTypes) {
     setPaymentMethod(method)
   }
 

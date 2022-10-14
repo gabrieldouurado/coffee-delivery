@@ -1,11 +1,21 @@
 import { OrderContent, OrderInfos, SuccessContainer, SuccessTitleAndSubtittle } from "./styles";
 
-import { MapPin, Timer, CurrencyDollar} from 'phosphor-react'
+import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
 
 import MotoboyFigure from "../../assets/motoboy.png"
 import { CircleIcon } from "../../components/CircleIcon";
+import { useContext } from "react";
+import { CheckoutContext } from "../../contexts/CheckoutContext";
+
+const PAYMENT_TYPES = {
+  CreditCart: "Cartão de Crédito",
+  DebitCart: "Cartão de Débito",
+  Money: "Dinheiro"
+}
 
 export function Success() {
+  const { paymentMethod, addressInfos } = useContext(CheckoutContext)
+
   return (
     <SuccessContainer>
       <SuccessTitleAndSubtittle>
@@ -16,26 +26,26 @@ export function Success() {
         <OrderInfos>
           <div>
             <CircleIcon icon={<MapPin />} backgroundColor="purple" />
-            <text>
-              <span>Entrega em <strong>Rua João Daniel Martinelli, 102</strong></span>
-              Farrapos - Porto Alegre, RS
-            </text>
+            <section>
+              <span>Entrega em <strong>Rua {addressInfos?.street}, {addressInfos?.houseNumber}</strong></span>
+              {addressInfos?.district} - {addressInfos?.city}, {addressInfos?.state}
+            </section>
           </div>
 
           <div>
             <CircleIcon icon={<Timer />} backgroundColor="yellow" />
-            <text>
+            <section>
               <span>Previsão de entrega</span>
               <strong>20 - 30 minutos</strong>
-            </text>
+            </section>
           </div>
 
           <div>
             <CircleIcon icon={<CurrencyDollar />} backgroundColor="yellowDark" />
-            <text>
+            <section>
               <span>Pagamento na entrega</span>
-              <strong>Cartão de Crédito</strong>
-            </text>
+              <strong>{PAYMENT_TYPES[paymentMethod]}</strong>
+            </section>
           </div>
         </OrderInfos>
         <img src={MotoboyFigure} alt="Figura de um motoboy" />

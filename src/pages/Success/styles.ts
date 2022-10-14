@@ -47,7 +47,7 @@ export const OrderInfos = styled.div`
 
     gap: 12px;
 
-    text {
+    section {
       display: flex;
       flex-direction: column;
     }
