@@ -4,43 +4,69 @@ import { CartContext } from '../../contexts/CartContext';
 import { CartItem } from './components/CartItem';
 import { PaymentMethodSelector } from './components/PaymentMethodSelector';
 import { PurchaseValues } from './components/PurchaseValues';
-import { AddressAndPayment, AddressForm, StreetInput, ZipCodeInput, CheckoutContainer, Payment, Title, HouseNumberInput, ComplementInput, DistrictInput, CityInput, StateInput, Cart, PurchaseButton } from "./styles";
+import { AddressAndPayment, AddressForm, CheckoutContainer, Payment, Title, Cart, PurchaseButton } from "./styles";
+
+import { FormProvider, useForm, useFormContext } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod';
+import { NewCheckoutPurchase } from './components/NewCheckoutPurchase';
+
+const newCheckoutPurchaseFormSchema = zod.object({
+  zipCode: zod.string(),
+  street: zod.string(),
+  houseNumber: zod.string(),
+  complement: zod.string(),
+  district: zod.string(),
+  city: zod.string(),
+  state: zod.string()
+})
+
+type newCheckoutPurchaseFormData = zod.infer<typeof newCheckoutPurchaseFormSchema>
 
 export function Checkout() {
   const { CartItems } = useContext(CartContext)
 
+  const newCheckoutPurchaseForm = useForm<newCheckoutPurchaseFormData>({
+    resolver: zodResolver(newCheckoutPurchaseFormSchema),
+    defaultValues: {
+      zipCode: '',
+      street: '',
+      houseNumber: '',
+      complement: '',
+      district: '',
+      city: '',
+      state: ''
+    }
+  })
+
+  const { handleSubmit, reset } = newCheckoutPurchaseForm
 
   const totalPriceOfItems = CartItems.reduce((sum, item) => {
     const subtotalPriceOfOneItem: number = item.price * item.quantity
     return sum += subtotalPriceOfOneItem
   }, 0)
 
+  function handleCreateNewPurchase(data: newCheckoutPurchaseFormData) {
+    console.log(data)
+  }
+
   return (
     <CheckoutContainer>
       <div>
         <Title>Complete seu pedido</Title>
         <AddressAndPayment>
-          <AddressForm>
-            <div>
-              <MapPinLine size={22} />
+          <AddressForm id='address-form' onSubmit={handleSubmit(handleCreateNewPurchase)}>
+            <FormProvider {...newCheckoutPurchaseForm}>
               <div>
-                Endereço de entrega
-                <span>Informe o endereço onde deseja receber seu pedido</span>
+                <MapPinLine size={22} />
+                <div>
+                  Endereço de entrega
+                  <span>Informe o endereço onde deseja receber seu pedido</span>
+                </div>
               </div>
-            </div>
-            <section>
-              <ZipCodeInput placeholder='CEP' />
-              <StreetInput placeholder='Rua' />
-              <div>
-                <HouseNumberInput placeholder='Número' />
-                <ComplementInput placeholder="Complemento" />
-              </div>
-              <div>
-                <DistrictInput placeholder="Bairro" />
-                <CityInput placeholder="Cidade" />
-                <StateInput placeholder='UF' />
-              </div>
-            </section>
+              <NewCheckoutPurchase />
+              <input type="submit" />
+            </FormProvider>
           </AddressForm>
           <Payment>
             <div>
@@ -72,7 +98,10 @@ export function Checkout() {
             totalPriceOfItems={totalPriceOfItems}
             deliveryPrice={10.50}
           />
-          <PurchaseButton>
+          <PurchaseButton
+            type='submit'
+            form='address-form'
+          >
             CONFIRMAR PEDIDO
           </PurchaseButton>
         </Cart>
