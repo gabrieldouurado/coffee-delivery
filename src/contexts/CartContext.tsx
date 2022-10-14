@@ -13,6 +13,7 @@ interface CartContextType {
   newCartItem: (newItem: CartItemsType) => void
   changeItemQuantity: (item: string, newQuantity: number) => void
   removeItemOfCart: (itemForRemove: string) => void
+  clearCartItems: () => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -66,13 +67,18 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     setCartItems(CartItemsWithoutRemovedItem)
   }
 
+  function clearCartItems(){
+    setCartItems([])
+  }
+
   return (
     <CartContext.Provider
       value={{
         CartItems,
         newCartItem,
         changeItemQuantity,
-        removeItemOfCart
+        removeItemOfCart,
+        clearCartItems
       }}>
       {children}
     </CartContext.Provider>

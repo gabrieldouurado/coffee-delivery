@@ -26,7 +26,7 @@ const newCheckoutPurchaseFormSchema = zod.object({
 export type newCheckoutPurchaseFormData = zod.infer<typeof newCheckoutPurchaseFormSchema>
 
 export function Checkout() {
-  const { CartItems } = useContext(CartContext)
+  const { CartItems, clearCartItems } = useContext(CartContext)
   const { setAddressInfos } = useContext(CheckoutContext)
 
   const navigate = useNavigate()
@@ -44,7 +44,7 @@ export function Checkout() {
     }
   })
 
-  const { handleSubmit, reset } = newCheckoutPurchaseForm
+  const { handleSubmit, reset, watch } = newCheckoutPurchaseForm
 
   const totalPriceOfItems = CartItems.reduce((sum, item) => {
     const subtotalPriceOfOneItem: number = item.price * item.quantity
@@ -55,7 +55,11 @@ export function Checkout() {
     setAddressInfos(data)
     reset()
     navigate('/success')
+    clearCartItems()
   }
+
+  const zipcode = watch('zipCode')
+  const deliveryPrice = zipcode ? 13.27 : 0.0
 
   return (
     <CheckoutContainer>
@@ -102,7 +106,7 @@ export function Checkout() {
           ) : <div className='emptyCart'>Sem itens no carrinho</div>}
           <PurchaseValues
             totalPriceOfItems={totalPriceOfItems}
-            deliveryPrice={10.50}
+            deliveryPrice={deliveryPrice}
           />
           <PurchaseButton
             type='submit'
